@@ -1,0 +1,13 @@
+#include "Tarea.h"
+
+Task::Task(std::string Nom) : Nombre(Nom), Estado(0) {}
+
+std::string Task::getNom() const {
+	return Nombre;
+}
+bool Task::getEstado() const {
+	return Estado;
+}
+void Task::CambiarEstado() {
+	Estado = true;
+}
