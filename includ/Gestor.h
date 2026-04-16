@@ -7,7 +7,7 @@ class Manager {
 private:
 	std::vector<Task> Tareas;
 public:
-	void AgregarTarea();
+	void AgregarTarea(const Task& Tare);
 	void Mostrar() const;
 	void MarcarFin(int Num);
 	std::vector<Task>& ObtenTarea() const;
