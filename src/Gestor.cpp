@@ -16,3 +16,7 @@ void Manager::MarcarFin(int Num) {
 		Tareas[Num].CambiarEstado();
 	}
 }
+
+const std::vector<Task>& Manager::ObtenTarea() const {
+	return Tareas;
+}

@@ -10,7 +10,7 @@ public:
 	void AgregarTarea(const Task& Tare);
 	void Mostrar() const;
 	void MarcarFin(int Num);
-	std::vector<Task>& ObtenTarea() const;
+	const std::vector<Task>& ObtenTarea() const;
 };
 
 #endif

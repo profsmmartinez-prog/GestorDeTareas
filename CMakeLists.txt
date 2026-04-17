@@ -10,7 +10,7 @@ if (POLICY CMP0141)
 endif()
 
 project ("Programa")
-include_directories(includ)
+include_directories(includ libs)
 
 # Agregue un origen al ejecutable de este proyecto.
 add_executable (Programa "src/GestorDeTareas.cpp"  "includ/Tarea.h" "src/Tarea.cpp" "includ/Gestor.h" "src/Gestor.cpp")

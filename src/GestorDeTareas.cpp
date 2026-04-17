@@ -44,7 +44,9 @@ o	Configurar el estándar de C++ (C++20).
 */
 
 #include <iostream>
+#include "Nlohmann/json.hpp"
 #include "Gestor.h"
+#include <fstream>
 
 int main()
 {
@@ -80,8 +82,17 @@ int main()
 			default:
 				std::cout << "Opcion Invalida \n ";
 				break;
-
 		}
+		//{"Titulo": "asdasdsa"}
 	} while (Opc !=4);
 	//std::cout << Nuevo.getNom() << " | " << Nuevo.getEstado();
+	nlohmann::json Guardar = nlohmann::json::array();
+	for (const auto& t: Gesto.ObtenTarea()) {
+		Guardar.push_back({ {"Nombre", t.getNom()},{"Estados", t.getEstado()}});
+	}
+	auto V = Task("A");
+	std::ofstream archivo("Datos.json");
+	archivo << Guardar;
+	archivo.close();
+
 }

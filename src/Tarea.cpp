@@ -9,5 +9,5 @@ bool Task::getEstado() const {
 	return Estado;
 }
 void Task::CambiarEstado() {
-	Estado = true;
+	Estado = 1;
 }
