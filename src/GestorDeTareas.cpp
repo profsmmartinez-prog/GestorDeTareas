@@ -54,6 +54,22 @@ int main()
 	Manager Gesto;
 	int Opc=0, Num=0;
 	std::string Nombre;
+	nlohmann::json Datos; //Inicialmente esta null;
+	std::ifstream Origen("Datos.json"); //Creamos la variable que abrira el archivo .json
+	if (Origen.is_open()) {
+		Origen >> Datos;
+		/*
+		* [
+		{"Estados":false,"Nombre":"Aprender C++"},
+		{"Estados":true,"Nombre":"Cenar"},
+		{"Estados":false,"Nombre":"Aprender GitHub"}
+		* ]
+		*/
+		for (auto& item : Datos) {
+			Gesto.AgregarTarea(Task(item["Nombre"],item["Estados"]));
+		}
+		Origen.close();
+	}
 
 	do {
 		std::cout << "=== GESTOR DE TAREAS === \n";
