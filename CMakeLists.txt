@@ -10,13 +10,21 @@ if (POLICY CMP0141)
 endif()
 
 project ("Programa")
-include_directories(includ libs)
+##include_directories(includ libs)
+add_library(libreria src/Gestor.cpp src/Tarea.cpp) # (Nom de Variable "Espacio" Archivos.cpp que estaran dentro del modulo)
+target_include_directories(libreria PUBLIC includ) # (Nom de Variable "Espacio" Publico/Privado Directorio donde se encuentran los .h/.hpp)
+
+#find_package()
+include_directories(libs)
 
 # Agregue un origen al ejecutable de este proyecto.
-add_executable (Programa "src/GestorDeTareas.cpp"  "includ/Tarea.h" "src/Tarea.cpp" "includ/Gestor.h" "src/Gestor.cpp")
+add_executable (Programa "src/GestorDeTareas.cpp")
+
+target_link_libraries(Programa PRIVATE libreria)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Programa PROPERTY CXX_STANDARD 20)
 endif()
 
 # TODO: Agregue pruebas y destinos de instalación si es necesario.
+#

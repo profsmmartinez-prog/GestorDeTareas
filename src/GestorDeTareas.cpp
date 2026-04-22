@@ -54,6 +54,7 @@ int main()
 	Manager Gesto;
 	int Opc=0, Num=0;
 	std::string Nombre;
+
 	nlohmann::json Datos; //Inicialmente esta null;
 	std::ifstream Origen("Datos.json"); //Creamos la variable que abrira el archivo .json
 	if (Origen.is_open()) {
@@ -108,7 +109,7 @@ int main()
 	}
 	auto V = Task("A");
 	std::ofstream archivo("Datos.json");
-	archivo << Guardar;
+	archivo << Guardar.dump(4);
 	archivo.close();
 
 }
