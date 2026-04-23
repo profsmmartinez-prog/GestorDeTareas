@@ -12,14 +12,20 @@ project("Programa")
 
 include(FetchContent)
 FetchContent_Declare(nlohmann_json GIT_REPOSITORY https://github.com/nlohmann/json.git GIT_TAG v3.11.3)
-
+#Le informamos al CMake que queremos bajar, de donde y que version(No es obligatorio) 
 FetchContent_MakeAvailable(nlohmann_json)
+#set(CMAKE_BUILD_TYPE Release) Debug Generar el ejecutable sin optimizacion.
+#Release Ideal para produccion y genera una alta optimizacion
 
 add_library(Libreria src/Gestor.cpp src/Tarea.cpp)
 target_include_directories(Libreria PUBLIC includ)
 #target_compile_features(Libreria Public CXX_STANDARD 20)
 add_executable(app "src/GestorDeTareas.cpp")
 
+##target_compile_options(libreria PRIVATE 
+#	$<$<CXX_COMPILER_ID:GNU,Clang>: -03 -march=native> ##-03 Elimina Codigo innecesario, optimiza bucles, simplifica funciones
+			##March=native Optimiza el codigo para nuestro procesador, usando instrucciones especificas del procesador.
+#	$<$<CXX_COMPILER_ID:MVSC>: /02> )
 target_link_libraries(app PRIVATE Libreria PRIVATE nlohmann_json::nlohmann_json)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
